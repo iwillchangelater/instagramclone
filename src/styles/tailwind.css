@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .log-form {
+    width: 350px !important;
+    @apply flex items-center border border-gray-300 bg-white border-solid;
+  }
+}
+@layer base {
+  input {
+    @apply rounded-md outline-none;
+  }
+}
