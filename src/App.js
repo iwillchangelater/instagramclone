@@ -1,8 +1,11 @@
-import Login from "./Pages/Login";
 import "./styles/main.css";
 import { Route, Switch } from "react-router-dom";
+
 import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import PasswordReset from "./Pages/PasswordReset";
+import Home from "./Pages/Home";
+
 import Redirect from "./components/Redirect";
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/account/password/reset" component={PasswordReset} />
         <Route path="/reditect/:id" component={Redirect} />
+        <Route path="/home" component={Home} />
       </Switch>
     </div>
   );
