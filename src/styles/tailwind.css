@@ -25,7 +25,7 @@
     @apply mt-5 lg:border border-gray-300 border-solid m-auto;
   }
   .sidebar {
-    max-width: 200px;
+    width: 300px;
     @apply hidden lg:block;
   }
 }

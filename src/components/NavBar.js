@@ -5,7 +5,7 @@ import { SearchIcon, FireIcon, UserIcon } from "@heroicons/react/solid";
 import { ChatIcon, HomeIcon, HeartIcon } from "@heroicons/react/outline";
 export default function NavBar() {
   return (
-    <div className="navbar-container ">
+    <div className="navbar-container z-50 ">
       <div className="navbar-content m-auto px-3">
         <Link className="m-2" to="/home">
           <img src={logo} alt="logo" className="h-10" />

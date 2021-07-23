@@ -9,7 +9,7 @@ export default function NewsFeed() {
         {/* story sections */}
         <Story />
         {/* postSections */}
-        <div className="container-900 m-auto flex justify-center lg:justify-start">
+        <div className="container-900 m-auto flex justify-center lg:justify-start ">
           <Posts />
           <SideBar />
         </div>

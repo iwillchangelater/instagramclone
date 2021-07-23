@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <NavBar />
       {/* main section  */}
-      <div className="w-screen">
+      <div className="w-screen ">
         {/* newsfeed */}
         <NewsFeed />
         {/* side bar lg */}
