@@ -6,7 +6,7 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/outline";
 
-export default function PostReact() {
+export default function PostReact(props) {
   return (
     <div>
       <div className="flex justify-between my-2">
@@ -19,7 +19,7 @@ export default function PostReact() {
           <BookmarkIcon className=" w-8" />
         </div>
       </div>
-      <div className="font-bold">2,454 likes</div>
+      <div className="font-bold">{props.likes} likes</div>
     </div>
   );
 }

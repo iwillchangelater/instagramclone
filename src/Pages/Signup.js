@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import ins from "../source/instagram.png";
 import Footer from "../components/Footer";
 import AppDownload from "../components/AppDownload";
+import LogContext from "../context/LogContext";
 export default function Signup() {
+  const { register } = useContext(LogContext);
+  const [data, setData] = useState({
+    email: null,
+    username: null,
+    fullname: null,
+    password: null,
+  });
+  const registerHandle = () => {
+    console.log("dataa ", data);
+    register(data.email, data.username, data.fullname, data.password);
+  };
   return (
     <div className=" flex flex-col items-center m-auto ">
       <div className="mt-10 log-form flex-col mx-15">
@@ -26,10 +38,11 @@ export default function Signup() {
             OR
           </p>
         </div>
-        <form className="w-10/12">
+        <form className="w-10/12" onSubmit={(e) => e.preventDefault()}>
           <div className="relative w-full">
             <input
               type="text"
+              onChange={(e) => setData({ ...data, email: e.target.value })}
               placeholder="Phone number, username or email"
               className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
             />
@@ -37,6 +50,7 @@ export default function Signup() {
           <div className="relative w-full">
             <input
               type="text"
+              onChange={(e) => setData({ ...data, fullname: e.target.value })}
               placeholder="Full Name"
               className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
             />
@@ -44,19 +58,24 @@ export default function Signup() {
           <div className="relative w-full">
             <input
               type="text"
+              onChange={(e) => setData({ ...data, username: e.target.value })}
               placeholder="UserName"
               className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
             />
           </div>
           <div className="relative mb-2">
             <input
+              onChange={(e) => setData({ ...data, password: e.target.value })}
               type="password"
               placeholder="Password"
               className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
             />
             <p className="absolute right-2 top-3 hidden">Show</p>
           </div>
-          <button className="w-full bg-blue-400 text-white py-1 rounded-md mb-3">
+          <button
+            className="w-full bg-blue-400 text-white py-1 rounded-md mb-3"
+            onClick={() => registerHandle()}
+          >
             Log In
           </button>
         </form>
@@ -77,8 +96,8 @@ export default function Signup() {
         </div>
       </div>
 
-      <div className="log-form px-14 py-3  mt-3">
-        Have an account?
+      <div className="log-form px-14 py-3  mt-3 inline-flex justify-center">
+        <p>Have an account?</p>
         <Link className="text-blue-500 font-bold pl-1" to="/">
           Login
         </Link>

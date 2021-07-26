@@ -3,10 +3,10 @@ import NavBar from "../components/NavBar";
 import NewsFeed from "../components/NewsFeed";
 export default function Home() {
   return (
-    <div>
+    <div className="w-full">
       <NavBar />
       {/* main section  */}
-      <div className="w-screen ">
+      <div className="w-full ">
         {/* newsfeed */}
         <NewsFeed />
         {/* side bar lg */}

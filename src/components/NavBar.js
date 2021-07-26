@@ -1,9 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../source/instagram.png";
 import { SearchIcon, FireIcon, UserIcon } from "@heroicons/react/solid";
 import { ChatIcon, HomeIcon, HeartIcon } from "@heroicons/react/outline";
+import ClickOutsideHandler from "../utilities/ClickOutsideHandler";
+import UserMenu from "./UserMenu";
+import PostActivity from "./PostActivity";
+import UserContext from "../context/UserContext";
 export default function NavBar() {
+  const [userMenuStatus, setUserMenuStatus] = useState(false);
+  const [heart, setHeart] = useState(false);
+  const ref = useRef();
+  const ref1 = useRef();
+  ClickOutsideHandler(ref, () => {
+    if (userMenuStatus) setUserMenuStatus(!userMenuStatus);
+  });
+  ClickOutsideHandler(ref1, () => {
+    if (heart) setHeart(!heart);
+  });
   return (
     <div className="navbar-container z-50 ">
       <div className="navbar-content m-auto px-3">
@@ -25,11 +39,33 @@ export default function NavBar() {
           </div>
         </div>
         <div className="flex gap-4">
-          <HomeIcon className="w-8 h-8 cursor-pointer" />
-          <ChatIcon className="w-8 h-8 cursor-pointer" />
-          <FireIcon className="w-8 h-8 cursor-pointer" />
-          <HeartIcon className="w-8 h-8 cursor-pointer" />
-          {<UserIcon className="w-8 h-8 cursor-pointer" />}
+          <NavLink to="/home" activeClassName=" bg-gray-300 rounded-xl">
+            <HomeIcon className="w-8 h-8 cursor-pointer" />
+          </NavLink>
+          <NavLink to="/direct/inbox" activeClassName=" bg-gray-300 rounded-xl">
+            <ChatIcon className="w-8 h-8 cursor-pointer" />
+          </NavLink>
+          <NavLink to="/explore" activeClassName=" bg-gray-300 rounded-xl">
+            <FireIcon className="w-8 h-8 cursor-pointer" />
+          </NavLink>
+          <div className="relative" ref={ref1}>
+            <HeartIcon
+              className="w-8 h-8 cursor-pointer"
+              onClick={() => {
+                setHeart(!heart);
+              }}
+            />
+            {heart && <PostActivity />}
+          </div>
+          <div className="relative" ref={ref}>
+            <UserIcon
+              className="w-8 h-8 cursor-pointer"
+              onClick={() => {
+                setUserMenuStatus(!userMenuStatus);
+              }}
+            />
+            {userMenuStatus && <UserMenu />}
+          </div>
         </div>
       </div>
     </div>

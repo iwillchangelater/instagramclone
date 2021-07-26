@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HeartIcon } from "@heroicons/react/outline";
-export default function PostComment() {
+export default function PostComment({ comment }) {
   return (
     <div className="text-sm">
       <div className="flex justify-between">
@@ -9,7 +9,7 @@ export default function PostComment() {
           <Link to="/userid" className="font-bold mr-2 hover:underline">
             username
           </Link>
-          <p>comment section</p>
+          <p>{comment[1].comment}</p>
         </div>
         <HeartIcon className="w-8 pr-4" />
       </div>
@@ -18,7 +18,7 @@ export default function PostComment() {
           <Link to="/userid" className="font-bold mr-2  hover:underline">
             username2
           </Link>
-          <p>comment section 2</p>
+          <p>{comment[2].comment}</p>
         </div>
         <HeartIcon className="w-8 pr-4" />
       </div>

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { LockClosedIcon } from "@heroicons/react/outline";
 export default function PasswordReset() {
   return (
-    <div>
+    <div className="w-full">
       <NavBar />
 
       <div className="mt-10 log-form flex-col m-auto">

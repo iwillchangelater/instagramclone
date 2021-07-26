@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AppDownload from "../components/AppDownload";
 import ins from "../source/instagram.png";
 import phoneImg from "../source/phoneImg.PNG";
 import Footer from "../components/Footer";
+import LogContext from "../context/LogContext";
 export default function Login() {
+  const { login, history } = useContext(LogContext);
+  const [data, setData] = useState({ email: "", password: "" });
+  const logBtn = (e) => {
+    login(data.email, data.password);
+    console.log(data);
+  };
+  if (localStorage.getItem("token")) history.push("/home");
   return (
     <div className=" w-screen">
       <div className=" flex flex-col lg:flex-row items-center justify-center gap-5  w-full ">
@@ -20,23 +28,32 @@ export default function Login() {
               height={100}
               width={300}
             />
-            <form className="w-10/12">
+            <form className="w-10/12" onSubmit={(e) => e.preventDefault()}>
               <div className="relative w-full">
                 <input
                   type="text"
+                  onChange={(e) => {
+                    setData({ ...data, email: e.target.value });
+                  }}
                   placeholder="Phone number, username or email"
                   className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
                 />
               </div>
               <div className="relative mb-2">
                 <input
+                  onChange={(e) => {
+                    setData({ ...data, password: e.target.value });
+                  }}
                   type="password"
                   placeholder="password"
                   className="w-full pl-3 py-2 bg-gray-50 border-2 border-gray-200 mb-2 "
                 />
                 <p className="absolute right-2 top-3 hidden">Show</p>
               </div>
-              <button className="w-full bg-blue-400 text-white py-1 rounded-md mb-3">
+              <button
+                onClick={logBtn}
+                className="w-full bg-blue-400 text-white py-1 rounded-md mb-3"
+              >
                 Log In
               </button>
             </form>
